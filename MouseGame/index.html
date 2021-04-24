@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script type="text/javascript" src="jquery/jquery-3.1.1.min.js" ></script>
+		<title></title>
+		<style type="text/css">
+		#score{
+				text-align: center;
+				border: none;
+				width: 100px;
+				display: none;
+				position: absolute;
+				left: 230px;
+				top: 196px;
+				
+			}
+		/*游戏主界面样式*/
+			
+			#content{	
+				z-index: 2;
+				position: fixed;
+				top: 10%;
+				left: 10%;
+				height: 550px;
+				width: 750px;
+				background: url(img/set_board.png);
+				cursor: none;
+			}
+			/*按钮样式*/
+			#start{
+				background: none;
+				cursor: none;
+				border: hidden;
+				display: block;
+				background-image: url(img/start1.png);
+				width: 158px;
+				height: 53px;
+				margin-left: 500px;
+				margin-top: 230px;
+			}
+			/*游戏说明按钮*/
+			#message{
+				background: none;
+				cursor: none;
+				border: hidden;
+				display: block;
+				background-image: url(img/message1.png);
+				width: 156px;
+				height: 54px;
+				margin-left: 500px;
+				margin-top: 50px;
+			}
+			#message:hover{
+				background-image: url(img/message2.png);
+			}
+			/*按钮切换背景样式*/
+			#start:hover{
+				background-image: url(img/start2.png);
+			}
+			#remtime{
+				
+				text-align: center;
+				border: none;
+				display: none;
+				position: absolute;
+				width: 110px;
+				left: 485px;
+				top: 196px;
+				
+			}
+			/*锤子样式*/
+ 			#Img{ 
+ 				z-index: 3;
+ 				position:absolute; 
+ 				top:0px; 
+ 				left:0px;
+ 				}
+ 				/*游戏退出按钮*/
+			#exit{
+				background: none;
+				cursor: none;
+				border: hidden;
+				display: block;
+				background-image: url(img/exit1.png);
+				width: 156px;
+				height: 54px;
+				margin-left: 500px;
+				margin-top: 50px;
+			}
+			#exit:hover{
+				background-image: url(img/exit2.png);
+			}
+			/*返回主界面按钮*/
+			#back{
+				border: none;
+				background: none;
+				cursor: none;
+				background-image: url(img/back.png);
+				width: 153px;
+				height: 53px;
+				display: none;
+				margin-left: 320px;
+				margin-top: 400px;
+			}
+			#back:hover{
+				background-image: url(img/back1.png);
+			}
+			/*音乐播放按钮*/
+			#playbtn{
+				cursor: none;
+				background: none;
+				position: absolute;
+				left: 600px;
+				top: 40px;
+				width: 60px;
+				height: 56px;
+				background-image: url(img/musicplaying.png)  ;
+				border: hidden;
+			}
+			
+			/*冒出老鼠的区域*/
+			#d0{
+				
+				position: absolute;
+				left: 140px;
+				top: 160px;
+				width: 100px;
+				height: 100px;
+				overflow: hidden;
+			}
+			#d1{
+				position: absolute;
+				left: 330px;
+				top: 160px;
+				width: 100px;
+				height: 100px;
+				overflow: hidden;
+			}
+			#d2{		
+				
+						
+				position: absolute;
+				left: 530px;
+				top: 170px;
+				width: 100px;
+				height: 100px;
+				overflow: hidden;
+			}
+			#d3{
+				position: absolute;
+				left: 115px;
+				top: 250px;
+				width: 100px;
+				height: 100px;
+				overflow: hidden;
+			}
+			#d4{
+				position: absolute;
+				left: 335px;
+				top: 255px;
+				width: 100px;
+				height: 100px;
+				overflow: hidden;
+			}
+			#d5{
+				position: absolute;
+				left: 535px;
+				top: 260px;
+				width: 100px;
+				height: 100px;
+				overflow: hidden;
+			}
+			#d6{
+				position: absolute;
+				left: 110px;
+				top: 350px;
+				width: 100px;
+				height: 100px;
+				overflow: hidden;
+			}
+			#d7{
+				
+				position: absolute;
+				left: 335px;
+				top: 355px;
+				width: 100px;
+				height: 100px;
+				overflow: hidden;
+			}
+			#d8{
+				position: absolute;
+				left: 555px;
+				top: 370px;
+				width: 100px;
+				height: 100px;
+				overflow: hidden;
+			}
+			/*老鼠样式*/
+			#m0 {
+				position: absolute;
+				margin-top: 150px;
+				display: block;
+				background: url(img/mouse1.png);
+				width: 100px;
+				height: 100px;
+			}
+			#m1 {
+				position: absolute;
+				margin-top: 150px;
+				display: block;
+				background: url(img/mouse1.png);
+				width: 100px;
+				height: 100px;
+			}
+			#m2 {
+				position: absolute;
+				margin-top: 150px;
+				display: block;
+				background: url(img/mouse1.png);
+				width: 100px;
+				height: 100px;
+			}
+			#m3 {
+				margin-top: 150px;
+				position: absolute;
+				display: block;
+				background: url(img/mouse1.png);
+				width: 100px;
+				height: 100px;
+			}
+			#m4 {
+				margin-top: 150px;
+				position: absolute;
+				display: block;
+				background: url(img/mouse1.png);
+				width: 100px;
+				height: 100px;
+			}
+			#m5 {
+				margin-top: 150px;
+				position: absolute;
+				display: block;
+				background: url(img/mouse1.png);
+				width: 100px;
+				height: 100px;
+			}
+			#m6 {
+				margin-top: 150px;
+				position: absolute;
+				display: block;
+				background: url(img/mouse1.png);
+				width: 100px;
+				height: 100px;
+			}
+			#m7{
+				margin-top: 150px;
+				position: absolute;
+				display: block;
+				background: url(img/mouse1.png);
+				width: 100px;
+				height: 100px;
+			}
+			#m8 {
+				margin-top: 150px;
+				position: absolute;
+				display: block;
+				background: url(img/mouse1.png);
+				width: 100px;
+				height: 100px;
+			}
+			/*左上角结束按钮*/
+			#endbtn{
+				display: none;
+				cursor: none;
+				background: none;
+				position: absolute;
+				left: 80px;
+				top: 40px;
+				width: 60px;
+				height: 56px;
+				background-image: url(img/pause.png)  ;
+				border: hidden;
+			}
+			/*结束界面*/
+			#endPhoto{
+				
+				display: none;
+				position: absolute;
+				top: 10%;
+				left: 10%;
+				height: 550px;
+				width: 750px;
+				background: url(img/bg_gameover.png);
+			}
+			/*最终得分区域*/
+			#pointarea{
+				color: white;
+				font-size: 40px;
+				font-family: 黑体;
+				position: absolute;
+				left: 400px;
+				top: 295px;
+			}	
+			/*结束 游戏界面中的返回主界面按钮*/
+			#back2{
+				background: none;
+				border: hidden;
+				background-image: url(img/back.png);
+				width: 153px;
+				height: 53px;
+				margin-left: 200px;
+				margin-top:355px ;
+			}
+			/*重新开始按钮*/
+			#restart{
+				background: none;
+				border: hidden;
+				background-image: url(img/restart.png);
+				width: 158px;
+				height: 53px;
+				margin-left: 33px;
+
+			}
+			#restart:hover{
+				background-image: url(img/restart2.png);
+			}
+		</style>
+	</head>
+	<body>
+	<div  id="all">
+	<div id="content">
+	<form id="form1" name="form1" style="margin-top: auto 0;">
+                
+                <input type="text" name="score" id="score" size="5">
+                <input type="text" name="remtime" id="remtime" size="5">
+            </form>
+    <div id="btn">
+    <input type="button"  id="start" onclick="startGame()">	
+    <input type="button"  id="message" onclick="helpMessage()" />	
+    <input type="button"  id="exit"  onclick="exit()"/>
+    <input type="button"  id="back" onclick="backMenu()"/>
+    <input type="button"   id="playbtn" onclick="playOrPause()"></input>
+     <input type="button" onclick="GameOver()"  id="endbtn" ></input>
+    </div>
+    <div id="area">
+			<div id="d0" >
+				<div id="m0" ></div>				
+			</div>
+			<div id="d1">
+				<div id="m1" ></div>
+			</div>
+			<div id="d2">
+				<div id="m2" ></div>				
+			</div>
+			<div id="d3">
+				<div id="m3" ></div>		
+			</div>
+			<div id="d4">
+				<div id="m4" ></div>
+			</div>
+			<div id="d5">
+				<div id="m5" ></div>				
+			</div>
+			<div id="d6">
+				<div id="m6" ></div>				
+			</div>
+			<div id="d7">
+				<div id="m7"></div>				
+			</div>
+			<div id="d8">
+				<div id="m8" ></div>
+			</div>
+			</div>	
+            
+		
+	</div>	
+		
+	<div id="endPhoto">
+				<div id="pointarea">
+				<span id="point"></span>
+				</div>
+				<input type="button" id="back2" onclick="backMenu()" />
+				<input type="button" id="restart" onclick="startGame()" />
+			</div>			
+				<audio id="audio" src="audio/game_music.ogg" autoplay="autoplay" loop="loop"  ></audio>
+				<img id="Img" src="img/hammer.png" />
+				</div>
+	</body>
+	<script type="text/javascript">
+	// 锤子跟着鼠标移动
+	 		window.onload=Main;	
+	 		//全局坐标变量
+		  var x="";
+		  var y="";
+		  //定位图片位置
+		   function GetMouse(oEvent,snum)
+		  {
+		     x=oEvent.clientX;
+		     y=oEvent.clientY;
+		    document.getElementById('Img').style.left=(parseInt(x))+10+"px";
+		    document.getElementById('Img').style.top=y-30+"px";		    
+		     var oEvent=oEvent||event;    
+		   }
+		//入口
+		  function Main()
+		  {
+		  	//改了这个位置会卡
+		    var ele=document.getElementById("all");
+		//注册鼠标移动事件
+		    ele.onmousemove=function(){GetMouse(event);}
+		// 注册鼠标按下事件 
+		    ele.onmousedown=function(){
+            		ChangeBg("Img","img/hammer2.png");
+		    	
+		    }
+		//注册鼠标弹回事件
+		    ele.onmouseup=function(){ChangeBg("Img","img/hammer.png");}
+		   }
+		//图片变化
+		  function ChangeBg(id,url)
+		  {
+		    document.getElementById(id).src=url;
+		  }
+		   
+		   //音频播放与暂停
+			function playOrPause(){
+				var audio =	document.getElementById("audio");
+				if(audio.paused){
+					audio.play();
+					document.getElementById("playbtn").style.backgroundImage = "url(img/musicplaying.png)";
+				}else if(audio.played){
+					audio.pause();
+					document.getElementById("playbtn").style.backgroundImage = "url(img/musicpause.png)";
+					
+				}
+			}
+		  
+		  function helpMessage(){
+
+				document.getElementById("start").style.display="none";
+				document.getElementById("message").style.display="none";
+				document.getElementById("exit").style.display="none";
+				document.getElementById("content").style.background="url(img/help.png) no-repeat";
+				document.getElementById("back").style.display="block";
+				
+			}
+		  
+		  //返回游戏主界面
+			function backMenu(){
+				//document.getElementById("endbtn").style.display = "none";
+				document.getElementById("content").style.cursor="none";
+				document.getElementById("content").style.display="block";
+
+				//document.getElementById("endPhoto").style.display="none";
+				document.getElementById("start").style.display="inline-block";
+				document.getElementById("message").style.display="inline-block";
+				document.getElementById("exit").style.display="inline-block";
+				document.getElementById("content").style.background="url(img/set_board.png)";
+				document.getElementById("back").style.display="none";
+				
+			}
+			/*退出游戏功能*/
+			function exit(){
+				var r = confirm("确定退出游戏吗？","提示");
+				if(r==true){
+					window.close();
+				}else{
+					alert("继续战斗吧");
+				}
+			}	
+		//全局变量  判断是否打中老鼠	
+		var beat=0;	
+		//总游戏时间
+		var time=20;
+		//倒计时时间
+		var djsTime=3;
+		/*点击游戏说明按钮*/	
+			intervalid = null,        //指定setInterval()的变量
+   			timeId = null;         //指定setTimeout()的变量	
+   			timeId2 = null;	
+			
+			
+		function startGame(){
+		document.getElementById("content").style.cursor="none";	
+		document.getElementById("area").style.display="block";
+		document.getElementById("endbtn").style.display="block";
+		time=20;
+		document.form1.score.value=0;
+		beat=0;	
+		timeShow();
+		document.getElementById("content").style.display="block";
+				document.getElementById("endPhoto").style.display="none";
+				document.getElementById("remtime").style.display="block"
+				document.getElementById("score").style.display="block"
+				
+				document.getElementById("content").style.background="url(img/bg_canvas.png)";
+				document.getElementById("start").style.display="none";
+				document.getElementById("message").style.display="none";
+				document.getElementById("exit").style.display="none";
+		//接下来编写  游戏运行内容
+		intervalid=setInterval(function(){
+		//	产生随机数  根据随机数 找到相应的div 地鼠坑ID
+		//然后投放地鼠
+		var num=Math.floor(Math.random()*9);	
+		//获取内外边距  给地鼠定位  出现位置
+		var l1=document.getElementById('Img').offsetLeft;  
+				//自身宽度+距离左侧的宽度
+	            var r1=document.getElementById('Img').offsetLeft+document.getElementById('Img').offsetWidth;  
+	            var t1=document.getElementById('Img').offsetTop;  
+	            //锤子自身对的高度+距离上侧的高度
+	            var b1=document.getElementById('Img').offsetTop+document.getElementById('Img').offsetHeight;  
+	            var l2=document.getElementById('m'+num).offsetLeft; 
+	            //地鼠自身宽度+距离左侧的宽度
+	            var r2=document.getElementById('m'+num).offsetLeft+document.getElementById('m'+num).offsetWidth;  
+	            var t2=document.getElementById('m'+num).offsetTop;  
+	            //地鼠自身的高度距离上侧的高度 
+	            var b2=document.getElementById('m'+num).offsetTop+document.getElementById('m'+num).offsetHeight;
+	            if(r1<l2 || l1>r2 || b1<t2 || t1>b2){
+	            var ele=document.getElementById("m"+num);
+	            ele.onmousedown=function(){
+	           	ChangeBg("Img","img/hammer2.png");
+	           	//打中老鼠 则开始计分
+	           		document.form1.score.value = beat;
+	            		console.log("总得分为："+beat);
+	            		document.getElementById('m'+num).style.backgroundImage='url(img/mouse2.png)'; 
+	           	
+	            }
+	             beat+=1;
+	            
+	            	
+	            }else{
+	            	
+	            	//打不中 则不计分
+	            	var ele = document.getElementById("m"+num);
+	            	//实现锤子点击动画
+	            	ele.onmousedown = function(){
+	            		ChangeBg("Img","img/hammer2.png");
+	            		
+	            		 document.getElementById('m'+num).style.background='url(imgmouse1/.png)';  
+	            	}
+	            }
+	 //接下来 就是一些  图片修饰特效 jquery
+	   //老鼠冒出和缩回特效
+	    $("#m"+num).animate({"marginTop":0+"px"},function(){
+
+                	timeId2=  setTimeout(function(){
+	                    $("#m"+num).animate({"marginTop":100+"px"});
+	                },1000);
+	                
+	            });		
+	      //老鼠出现的样子图片     
+		  document.getElementById("m"+num).style.backgroundImage = "url(img/mouse1.png)";	
+			
+		},3000);
+		
+		
+		
+		}
+		
+		//开始倒计时的判断
+		function timeShow(){
+		if(time==0){
+		GameOver();	
+			return;
+		}else{
+			time=time-1;
+		document.form1.remtime.value=time;	
+		timeId=setTimeout("timeShow()",2000);
+		}
+			
+		}
+		//倒计时结束  就关闭游戏
+		function GameOver(){
+		document.getElementById("remtime").style.display="none"
+				document.getElementById("score").style.display="none"
+				document.getElementById("endPhoto").style.cursor = "none";
+				document.getElementById("back2").style.cursor = "none";
+				document.getElementById("restart").style.cursor = "none";
+				document.getElementById("area").style.display = "none";
+				document.getElementById("point").innerText = beat;
+				document.getElementById("content").style.cursor="auto";
+    			clearTimeout(timeId);//clearTime()方法返回setTimeout()的id	
+    			clearTimeout(timeId2);
+    			clearInterval(intervalid);
+				document.getElementById("endPhoto").style.display="block"
+				document.getElementById("content").style.display="none";
+
+				for (var i=0;i<=8;i++) {
+					document.getElementById("m"+i).style.marginTop="100px";
+				}	
+		
+			
+		}
+		
+	</script>
+</html>

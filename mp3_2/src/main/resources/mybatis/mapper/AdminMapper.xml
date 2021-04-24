@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinasoft.mp3_2.dao.AdminMapper">
+    <!-- 写入cache单列标签  表面在此映射中开启mybatis二级缓存-->
+    <cache  eviction="LRU" flushInterval="200000" readOnly="true" size="1024" />
+
+<select id="selectAdminAll"   resultType="map" useCache="true"  flushCache="false">
+select  *  from  tb_admin
+</select>
+
+<select id="selectUserByNameAndPassWord" parameterType="map" resultType="map" useCache="true"  flushCache="false">
+SELECT * from tb_admin as tad WHERE
+tad.ADMIN_NAME=#{userName}
+AND tad.ADMIN_PASSWORD=#{passWord}
+</select>
+
+ <select id="selectMp3Index" parameterType="map" resultType="map"
+         useCache="true" flushCache="false">
+SELECT
+tm.MP3_ID as mp3Id,
+tm.MP3_NAME as mp3Name,
+tm.MP3_MAN as mp3Man,
+tm.MP3_MANIMG as mp3ManImg,
+tm.MP3_SRC  as mp3Src,
+tm.MP3_BIG  as mp3Big
+ from
+ tb_mp3 as tm
+  <where>
+  <if test=" mp3Name!=null and mp3Name!='' ">
+      tm.MP3_NAME like  CONCAT('%',#{mp3Name},'%')
+  </if>
+  <if test=" mp3Man!=null and mp3Man!='' ">
+    and  tm.MP3_MAN like  CONCAT('%',#{mp3Man},'%')
+  </if>
+  </where>
+
+ </select>
+
+  <insert id="insertMp3Data" parameterType="map" flushCache="true">
+   insert into tb_mp3 values(null,#{mp3Name},#{mp3Man},#{mp3ManImg},#{mp3Src},#{mp3Big});
+  </insert>
+
+  <delete id="deleteMp3DataByIds" parameterType="String" flushCache="true">
+   delete from tb_mp3 where
+   <foreach item="mp3Ids"  collection="array"
+   open="MP3_ID in (" separator="," close=")">
+    #{mp3Ids}
+   </foreach>
+  </delete>
+
+</mapper>

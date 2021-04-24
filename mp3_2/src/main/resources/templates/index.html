@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My JSP 'index.jsp' starting page</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+    <meta name="description" content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="../css/styles/shards-dashboards.1.1.0.min.css">
+    <link rel="stylesheet" href="../css/styles/extras.1.1.0.min.css">
+    <link rel="stylesheet" href="../js/layui/css/layui.css"  >
+    <link rel="stylesheet" href="../css/layui.css" media="all">
+    <style type="text/css">
+        .thwidth{
+            width:120px;
+        }
+    </style>
+</head>
+<body>
+<div  class="col-lg-8"  style="margin: 0 auto;">
+    <div  class="card card-small mb-6">
+        <div  style="margin-top: 20px;margin-left: 20px;">
+            <form  class="form-inline"  id="page"   role="form"   method="post"  action="admin/page.action">
+                <input  type="hidden"  value="1"  id="pageSize" name="pageSize">
+                <!-- 搜索框的排版 -->
+                <div class="form-group"   style="margin-left: 30px;" >
+                    <label   class=""  for="name">歌曲名</label>
+                    <input  type="text"  class="form-control" id="mp3Name"  name="mp3Name"     placeholder="请输入歌曲名">
+                </div>
+
+                <div class="form-group"   style="margin-left: 30px;" >
+                    <label   class=""  for="name">歌手名</label>
+                    <input  type="text"  class="form-control" id="mp3Man"  name="mp3Man"     placeholder="请输入歌手名">
+                </div>
+                 <!--<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>-->
+                <button  type="button" onclick="(function() {
+                  index(indexPage,indexlimit,$('#mp3Name').val(),$('#mp3Man').val());
+                })();"
+                         class="btn btn-default btn-sm btn-success" style="margin-left: 60px;">点击搜索</button>
+                <button  type="reset"    class="btn btn-default btn-sm btn-danger" style="margin-left: 60px;">重置搜索框</button>
+            </form>
+        </div>
+        <br>
+        <table    class="table table-striped table-bordered  table-condensed table-hover ">
+            <!-- thead表示表头区域  是固定值 -->
+            <thead>
+            <tr>
+
+                <th  style="width:120px;">
+                    <div  class="checkbox">
+                        <label>
+                            <input   type="checkbox"  id="checkbox0"  onclick="checkboxAll('checkbox0');">
+                            多选/反选
+                        </label>
+                    </div>
+                </th>
+
+                <th style="width:120px;">歌曲编号</th>
+                <th style="width:120px;">歌曲名</th>
+                <th style="width:120px;">歌手名</th>
+                <th style="width:120px;">歌曲大小</th>
+                <th>试听</th>
+                <th>删除</th>
+            </tr>
+            </thead>
+            <!-- tbody就表示 表数据体  活值  -->
+            <tbody id="tableMain">
+           <!-- <c:forEach  items="${list}"  var="list1"   varStatus="status">
+                <tr >
+
+                    <td>
+                        <div  class="checkbox">
+                            <input  type="checkbox"  value="${list1.mp3Id}"   name="checkboxId"  onclick="checkboxOne();">
+                        </div>
+                    </td>
+
+                    <td>${list1.mp3Id}</td>
+                    <td>${list1.mp3Name}</td>
+                    <td>${list1.mp3Man}</td>
+                    <td>${list1.mp3Big}</td>
+                    <td>
+                        <button type="button" class="btn btn-default btn-sm btn-warning"  onclick="listener('${list1.mp3ManImg}','${list1.mp3Src}');">点击我试听音乐</button>
+                    </td>
+                    <td>
+                        <button  type="button"  class="btn btn-default btn-sm btn-danger"  onclick="deleteMp3('${list1.mp3Id}','${list1.mp3ManImg}','${list1.mp3Src}')">点击删除</button>
+                    </td>
+                </tr>
+            </c:forEach>-->
+            </tbody>
+        </table>
+
+        <div class="row  "   style="margin-bottom: 10px">
+            <div id="demo7" style="margin-left: 50px;"></div>
+            <input  type="button"  value="新增音乐"  onclick="add();"  class="btn btn-accent"  style="margin: 0 auto;">
+            <input   type="button"   value="删除音乐"  onclick="deleteMuch(0);"   class="btn btn-danger"  style="margin: 0 auto;">
+        </div>
+    </div>
+</div>
+
+
+<div   id="tong"  style="display: none;">
+    <div style="margin: 0 auto;">
+        <!-- 音乐封面专辑  图片位置 -->
+        <img  style="width:400px;height: 426px;" id="img0"  src="images/lioudehua.png">
+    </div>
+    <!-- 音频播放 路径位置 -->
+    <audio  src="mp3/1347614046.mp3"  id="audio0"  controls="controls"></audio>
+</div>
+
+ <!--<input type="text" id="timeSelect" placeholder="请点击选择格式时间">-->
+
+</body>
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/layui/layui.js"></script>
+<script src="/js/layui.js" charset="utf-8"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script  type="text/javascript">
+var indexPage=1,indexlimit=5;
+
+index(indexPage,indexlimit);
+    function index(page,limit,mp3Name,mp3Man){
+       /* (mp3Name+'')=='undefined'?mp3Name='null':mp3Name=*/
+        mp3Name= (mp3Name+'')=='undefined'?'':mp3Name;
+        mp3Man= (mp3Man+'')=='undefined'?'':mp3Man;
+
+  axios.post('admin/index',{page:page,limit:limit,mp3Name:mp3Name,mp3Man:mp3Man}).then(function (response) {
+var data=response.data;
+/*需要去替换table 中的tr td内容数据
+* js 动态 清空与加载 html元素*/
+  /*由于每次分页请求后  加载出来的数据是不一样的
+      * 所以先清空html原元素内容 再执行for循环 append追加新查询结果数据*/
+ $(function(){
+    $("#tableMain").html('');
+    for(var i=0;i<data.list.length;i++){
+        $("#tableMain").append("<tr >\n" +
+            "\n" +
+            "                    <td>\n" +
+            "                        <div  class=\"checkbox\">\n" +
+            "                            <input  type=\"checkbox\"  value=\""+data.list[i].mp3Id+","+data.list[i].mp3ManImg+","+data.list[i].mp3Src+"\"   name=\"checkboxId\"  onclick=\"checkboxOne();\">\n" +
+            "                        </div>\n" +
+            "                    </td>\n" +
+            "\n" +
+            "                    <td>"+data.list[i].mp3Id+"</td>\n" +
+            "                    <td>"+data.list[i].mp3Name+"</td>\n" +
+            "                    <td>"+data.list[i].mp3Man+"</td>\n" +
+            "                    <td>"+data.list[i].mp3Big+"</td>\n" +
+            "                    <td>\n" +
+            "                        <button type=\"button\" class=\"btn btn-default btn-sm btn-warning\"  onclick=\"listener('"+data.list[i].mp3Name+"','"+data.list[i].mp3ManImg+"','"+data.list[i].mp3Src+"');\">点击我试听音乐</button>\n" +
+            "                    </td>\n" +
+            "                    <td>\n" +
+            "                        <button  type=\"button\"  class=\"btn btn-default btn-sm btn-danger\"  onclick=\"deleteMuch('"+data.list[i].mp3Id+"','"+data.list[i].mp3ManImg+"','"+data.list[i].mp3Src+"')\">点击删除</button>\n" +
+            "                    </td>\n" +
+            "                </tr>");
+    }
+ });
+     /* layui.use('laydate', function(){
+          var laydate = layui.laydate;
+
+          //执行一个laydate实例
+          laydate.render({
+              elem: '#timeSelect' //指定元素
+          });
+      });*/
+
+layui.use(['laypage','layer','laydate'],function () {
+  var  laypage=layui.laypage,layer=layui.layer;
+
+/*var laydate=layui.laydate;
+/!*时间控件 功能编写*!/
+    laydate.render({
+       elem:'#timeSelect',
+        type:'date',
+         range: true,
+        format: 'yyyy年MM月dd日' //可任意组合
+    });*/
+
+//分页功能编写
+laypage.render({
+    elem:'demo7',
+    count:data.total,
+    limit:data.limit,
+    curr:data.page,
+    limits: [5,10,20,30],
+    theme: '#FF5722',
+    /*关于layui组件的样式设置*/
+    layout: ['count', 'prev', 'page', 'next','limit','refresh', 'skip'],
+    jump:function (obj,first) {
+        if(!first){
+       // alert(obj.limit);
+            indexPage=obj.curr,indexlimit=obj.limit;
+        index(obj.curr,obj.limit,$("#mp3Name").val(),$("#mp3Man").val());
+        }
+    }
+});
+});
+
+
+
+  });
+    }
+
+function add(){
+    layui.use(['laypage','layer','laydate'],function () {
+        layer.open({
+            type:2,   //type 0为消息框，1页面弹出层 2为ifream 子页面弹出层
+            anim: 1,   //弹出动画设置
+            title: false,  //弹出层标题
+            scrollbar: false,  //隐藏滚动条
+             offset: '80px',    //弹出层距上边距
+            shadeClose: true, //点击遮罩关闭
+            area : ['625px', '525px'],    //  弹出层的宽高
+            content: ['../add.html','no']  // contenta为弹出层内容。type为0 或1  写入字符串内容或者 id值绑定div
+            //  type  为2，content写url子页面路径
+        });
+    });
+}
+
+function listener(mp3Name,mp3ManImg,mp3Src){
+    layui.use('layer',function(){
+   var layer=layui.layer;
+        layer.open({
+        type:2, /*弹出层类型2  代表子页面嵌入弹出*/
+        title:mp3Name,
+       /*弹出层的宽高 尺寸*/
+         area:['620px','600px'],
+          /*shade后面的小数位 表示背景遮盖层的透明系数*/
+          shade:0.2,
+          maxmin:false,/*表示弹出层 可最大化*/
+            scrollbar: false,  //隐藏滚动条
+            shadeClose: true, //点击遮罩关闭
+            offset:['100px','600px'],
+            /*end表示 关闭时候的 Js回调相应函数
+            * 一般用于关闭 音频或视频播放进度条*/
+            end:function(){
+
+            },
+            content:['../music.html?mp3ManImg='+mp3ManImg+'&mp3Src='+mp3Src,'no']
+        });
+
+    });
+
+}
+
+function checkboxOne(){
+        var i=0;
+   $("input[type=checkbox][name=checkboxId]:checked").each(function () {
+       i++; /*每一次勾选多选框  计算勾选N个次数*/
+   });
+   /*如果勾选多选框次数 与当前行内多选框数量持平  则认为该表格多选框
+   * 处于全选状态*/
+   if(i==$("[name=checkboxId]:checkbox").length){
+    $("#checkbox0").prop("checked",true);
+   }else{
+       $("#checkbox0").prop("checked",false);
+   }
+
+}
+function checkboxAll(checkbox0) {
+    if($("#"+checkbox0).is(':checked')){
+  $("[name=checkboxId]:checkbox").prop("checked",true);
+    }else{
+        $("[name=checkboxId]:checkbox").prop("checked",false);
+    }
+}
+
+function deleteMuch(mp3Ids,mp3ManImgs,mp3Srcs) {
+    if(mp3Ids==0&&$("input[type=checkbox][name=checkboxId]:checked").length==0){
+     /*注意，先判断异常情况 点击多列删除按钮但没勾选任何checkbox
+     * 返回异常提示 完毕*/
+     alert('抱歉，必须选择某行数据后再进行删除！');
+     return;
+    }else if(mp3Ids==0){
+    /*多选删除 且有勾选行情况下*/
+        mp3Ids='';
+        mp3ManImgs='';
+        mp3Srcs='';
+     $("input[type=checkbox][name=checkboxId]:checked").each(function () {
+         var markIds=$(this).val().split(',');
+         mp3Ids+=markIds[0]+',';
+         mp3ManImgs+=markIds[1]+',';
+         mp3Srcs+=markIds[2]+',';
+     });
+ // alert('ID编号:'+mp3Ids+' 图片路径:'+mp3ManImgs+' 音频路径:'+mp3Srcs);
+    }else if(mp3Ids!=0){
+  /*id有具体值 为单列删除  后面直接拼接分隔符， 就完毕*/
+        mp3Ids+=',';
+        mp3ManImgs+=',';
+        mp3Srcs+=',';
+    }
+    axios.post('admin/deleteMp3Data',{mp3Ids:mp3Ids,mp3ManImgs:mp3ManImgs,mp3Srcs:mp3Srcs}).then(function (response) {
+         layui.use(['laypage','layer','laydate'],function () {
+             if (!response.data) {
+                 layer.msg('抱歉，删除音乐失败！',{icon:2});
+             }else{
+                 layer.msg('删除音乐成功！！',{icon:6});
+             }
+         });
+        index(1,5);
+    });
+}
+
+</script>
+</html>

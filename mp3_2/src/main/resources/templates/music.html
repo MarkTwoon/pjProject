@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>music</title>
+    <link rel="stylesheet" href="/jqueryMusic/css/common.css" />
+</head>
+<body style="width:610px;height:610px;margin-top:25px;">
+<!--<div id="app">
+    <div class="container">-->
+        <div class="music-box">
+            <img id="myImg" src="images/avatar.jpg" />
+            <div class="mask">
+                <div class="mplayer" onclick="play();">
+                    <i class="fa">
+                        <span class="before"></span>
+                        <span class="after"> </span>
+                    </i>
+                    <svg
+                            class="loadingSvg"
+                            width="50"
+                            height="50"
+                            viewBox="0,0,50,50"
+                            style="
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                "
+                    >
+                        <circle></circle>
+                    </svg>
+                </div>
+                <div class="m-circle m-progress">
+                    <svg width="326" height="326" viewBox="0,0,326,326">
+                        <circle
+                                cx="163"
+                                cy="163"
+                                r="159"
+                                stroke-width="4"
+                                stroke="rgba(255, 206, 113, 0.2)"
+                                fill="rgba(0,0,0,.2)"
+                        ></circle>
+                        <circle
+                                class="a"
+                                cx="163"
+                                cy="163"
+                                r="159"
+                                stroke-width="3"
+                                stroke="rgba(255, 206, 113, 1)"
+                                fill="none"
+                                stroke-dasharray="0 999"
+                                transform="matrix(0,-1,1,0,0,326)"
+                        ></circle>
+                    </svg>
+                </div>
+                <div class="m_time">
+                    <span class="mplayer_curtime">00:00</span>
+                    <span class="m-join">/</span>
+                    <span class="mplayer_durtime">00:00</span>
+                </div>
+            </div>
+        </div>
+   <!-- </div>
+</div>-->
+<audio id="myAudio" src="music/jq22.mp3"></audio>
+<script src="/jqueryMusic/js/jquery.min.js"></script>
+<script src="/jqueryMusic/js/common.js"></script>
+</body>
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/getUrl.js"></script>
+<script>
+    var mp3ManImg=$.getUrlParam("mp3ManImg");
+    var mp3Src=$.getUrlParam("mp3Src");
+   $(function(){
+   $("#myImg").attr("src",mp3ManImg);
+   $("#myAudio").attr("src",mp3Src);
+   /* 先覆盖原有图片 音频路径，再调用封装的播放封装方法体
+   * 加载完成 替换上传路径，即自动播放*/
+       play(1);
+   });
+</script>
+</html>
